@@ -167,6 +167,11 @@ class ResourceCarController extends Controller
         }
     }
 
+    /**
+     * Creating job to send email for all users.
+     *
+     * @param $users
+     */
     private function sendEmailToAllUsers($users)
     {
         foreach ($users as $user) {
