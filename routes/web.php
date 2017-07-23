@@ -13,4 +13,19 @@
 
 Route::get('/', function () {
     return view('welcome');
+})->name('index');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('cars', "Resource\\ResourceCarController");
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('auth/github', 'Auth\\Github\\LoginController@redirectToProvider')->name('github.auth');
+Route::get('auth/github/callback', 'Auth\\Github\\LoginController@handleProviderCallback')->name('github.callback');
+
+Route::get('auth/google', 'Auth\\Google\\LoginController@redirectToProvider')->name('google.auth');
+Route::get('auth/google/callback', 'Auth\\Google\\LoginController@handleProviderCallback')->name('google.callback');
+
