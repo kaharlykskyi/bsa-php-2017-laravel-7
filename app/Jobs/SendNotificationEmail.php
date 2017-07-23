@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Entity\User;
 use App\Entity\Car;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,7 +31,7 @@ class SendNotificationEmail implements ShouldQueue
      *
      * @return void
      */
-    public function handle(Mailer $mailer)
+    public function handle()
     {
         $car = Car::orderBy('id', 'desc')->take(1)->first();
 
