@@ -11,6 +11,8 @@
 |
 */
 
+use App\Entity\Car;
+
 Route::get('/', function () {
     return view('welcome');
 })->name('index');
@@ -29,3 +31,7 @@ Route::get('auth/github/callback', 'Auth\\Github\\LoginController@handleProvider
 Route::get('auth/google', 'Auth\\Google\\LoginController@redirectToProvider')->name('google.auth');
 Route::get('auth/google/callback', 'Auth\\Google\\LoginController@handleProviderCallback')->name('google.callback');
 
+
+Route::get('/test', function ()  {
+    return view('cars.email.new-car-notify');
+});

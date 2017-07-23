@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Queue;
 use App\Jobs\SendNotificationEmail;
+use App\Entity\User;
 
 class QueueTest extends \Tests\TestCase
 {
@@ -9,7 +10,8 @@ class QueueTest extends \Tests\TestCase
     {
         Queue::fake();
 
-        $user = new \App\User();
+        /*User model fixes*/
+        $user = new User();
         $user->fill([
             'id' => 1,
             'first_name' => 'Test',

@@ -9,7 +9,9 @@ use App\Manager\UserManager;
 use App\Request\CarStoreFormRules;
 use App\Request\SaveCar;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Jobs\SendNotificationEmail;
 
 class ResourceCarController extends Controller
 {
@@ -134,6 +136,7 @@ class ResourceCarController extends Controller
         } else {
             $data = new SaveCar($request);
             $this->carsData->saveCar($data);
+            $this->sendEmailToAllUsers($this->usersData->findAll());
             return $this->index('Car successfully added!');
         }
     }
@@ -161,6 +164,14 @@ class ResourceCarController extends Controller
                 $this->carsData->saveCar($data);
                 return $this->show($id);
             }
+        }
+    }
+
+    private function sendEmailToAllUsers($users)
+    {
+        foreach ($users as $user) {
+            $job = (new SendNotificationEmail($user))->onQueue('notification');
+            $this->dispatch($job);
         }
     }
 
