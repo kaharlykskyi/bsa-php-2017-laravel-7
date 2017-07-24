@@ -43,6 +43,7 @@
                 </form>
             <?php endif; ?>
             <a href="<?php echo e(URL::route('cars.rent', $car['id'])); ?>" class="btn btn-default rent-button">Rent car</a>
+            <a href="<?php echo e(URL::route('cars.return', $car['id'])); ?>" class="btn btn-default return-button">Return car</a>
         </div>
     </div>
 <?php $__env->stopSection(); ?>
