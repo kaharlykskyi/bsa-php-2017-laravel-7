@@ -16,16 +16,12 @@ class RentalService
     private $car_id;
     private $user_id;
     private $rented_from;
-    private $userManager;
-    private $carManager;
 
-    public function __construct($car_id, $user_id, $rented_from = 'Kyiv, 12b', UserManager $userManager, CarManager $carManager)
+    public function __construct($car_id, $user_id, $rented_from = 'Kyiv, 12b')
     {
         $this->car_id = $car_id;
         $this->user_id = $user_id;
         $this->rented_from = $rented_from;
-        $this->userManager = $userManager;
-        $this->carManager = $carManager;
     }
 
     /**
@@ -35,8 +31,10 @@ class RentalService
     {
         $user_id = $this->user_id;
         $car_id = $this->car_id;
+        $userManager = new UserManager();
+        $carManager = new CarManager();
 
-        if ($this->userManager->userExists($user_id) && $this->carManager->carExists($car_id)) {
+        if ($userManager->userExists($user_id) && $carManager->carExists($car_id)) {
             if ((!$this->CarIsRented()) && (!$this->UserHaveRentedCar())) {
                 $this->createNewRent();
             }
