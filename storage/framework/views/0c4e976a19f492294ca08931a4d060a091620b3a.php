@@ -32,8 +32,8 @@
             <p><span class="text-muted">Mileage:</span>&nbsp;<?php echo e($car['mileage']); ?></p>
             <p><span class="text-muted">Owner:</span>&nbsp;<?php echo e($owner); ?></p>
         </div>
-        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('editCar', $carObj)): ?>
-            <div class="panel-footer">
+        <div class="panel-footer">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('editCar', $carObj)): ?>
                 <a href="<?php echo e(URL::route('cars.edit', $car['id'])); ?>" class="btn btn-warning edit-button">Edit</a>
                 <form id="delete" action="<?php echo e(route('cars.destroy', $car['id'])); ?>" method="POST">
                     <?php echo e(csrf_field()); ?>
@@ -41,8 +41,9 @@
                     <input type="hidden" name="_method" value="delete">
                     <button role="button" class="btn btn-danger delete-button">Delete</button>
                 </form>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+            <a href="<?php echo e(URL::route('cars.rent', $car['id'])); ?>" class="btn btn-default rent-button">Rent car</a>
+        </div>
     </div>
 <?php $__env->stopSection(); ?>
 

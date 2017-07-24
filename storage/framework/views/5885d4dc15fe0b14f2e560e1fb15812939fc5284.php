@@ -26,6 +26,18 @@
             <h3 class="alert-heading">No cars</h3>
         </div>
     <?php else: ?>
+        <?php if(session('msgSuccess')): ?>
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="alert-heading"><?php echo e(session('msgSuccess')); ?></h5>
+            </div>
+        <?php endif; ?>
+        <?php if(session('msgWarning')): ?>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="alert-heading"><?php echo e(session('msgWarning')); ?></h5>
+            </div>
+        <?php endif; ?>
         <?php if($message != null): ?>
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

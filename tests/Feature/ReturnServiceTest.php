@@ -60,12 +60,12 @@ class ReturnServiceTest extends TestCase
 
     public function testCanNotReturnCarFromNonExistentUser()
     {
-        $return = new ReturnService($this->nonExistentCarTestData['car_id'], $this->nonExistentCarTestData['user_id'], $this->nonExistentCarTestData['returned_to']);
+        $return = new ReturnService($this->nonExistentUserTestData['car_id'], $this->nonExistentUserTestData['user_id'], $this->nonExistentUserTestData['returned_to']);
         $return->returnCar();
 
         $this->assertDatabaseMissing('rentals', [
-            'car_id' => $this->nonExistentCarTestData['car_id'],
-            'user_id' => $this->nonExistentCarTestData['user_id'],
+            'car_id' => $this->nonExistentUserTestData['car_id'],
+            'user_id' => $this->nonExistentUserTestData['user_id'],
         ]);
     }
 }

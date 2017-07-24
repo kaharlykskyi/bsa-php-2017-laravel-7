@@ -172,12 +172,12 @@ class ResourceCarController extends Controller
      *
      * @param $users
      */
-    private function sendEmailToAllUsers($users)
+    /*private function sendEmailToAllUsers($users)
     {
         foreach ($users as $user) {
             $job = (new SendNotificationEmail($user))->onQueue('notification');
             $this->dispatch($job);
         }
-    }
+    }*/
 
 }

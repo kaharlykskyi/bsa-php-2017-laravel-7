@@ -34,15 +34,17 @@
             <p><span class="text-muted">Mileage:</span>&nbsp;{{ $car['mileage'] }}</p>
             <p><span class="text-muted">Owner:</span>&nbsp;{{ $owner }}</p>
         </div>
-        @can('editCar', $carObj)
-            <div class="panel-footer">
+        <div class="panel-footer">
+            @can('editCar', $carObj)
                 <a href="{{ URL::route('cars.edit', $car['id']) }}" class="btn btn-warning edit-button">Edit</a>
                 <form id="delete" action="{{ route('cars.destroy', $car['id']) }}" method="POST">
                     {{ csrf_field() }}
                     <input type="hidden" name="_method" value="delete">
                     <button role="button" class="btn btn-danger delete-button">Delete</button>
                 </form>
-            </div>
-        @endcan
+            @endcan
+            <a href="{{ URL::route('cars.rent', $car['id']) }}" class="btn btn-default rent-button">Rent car</a>
+            <a href="{{ URL::route('cars.return', $car['id']) }}" class="btn btn-default return-button">Return car</a>
+        </div>
     </div>
 @endsection

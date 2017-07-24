@@ -34,7 +34,7 @@ class InsertTestData extends Migration
 
         DB::table('cars')->insert([
             'color' => 'blue',
-            'model' => 'Tesla 1',
+            'model' => 'Tesla W1',
             'registration_number' => 'TLS123',
             'year' => rand(1950,2017),
             'mileage' => rand(0,100000),
@@ -44,7 +44,7 @@ class InsertTestData extends Migration
 
         DB::table('cars')->insert([
             'color' => 'blue',
-            'model' => 'Tesla 2',
+            'model' => 'Tesla W2',
             'registration_number' => 'TLS321',
             'year' => rand(1950,2017),
             'mileage' => rand(0,100000),

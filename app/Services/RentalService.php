@@ -36,7 +36,11 @@ class RentalService
 
         if ($userManager->userExists($user_id) && $carManager->carExists($car_id)) {
             if ((!$this->CarIsRented()) && (!$this->UserHaveRentedCar())) {
-                $this->createNewRent();
+                if ($this->createNewRent()) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
     }
@@ -83,6 +87,10 @@ class RentalService
         $rent->user_id = $this->user_id;
         $rent->rented_from = $this->rented_from;
         $rent->rented_at = date("Y-m-d H:i:s");
-        $rent->save();
+        if ($rent->save()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -18,6 +18,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('cars', "Resource\\ResourceCarController");
+    Route::get('/cars/{id}/rent', "Rental\\RentalController@show")->name('cars.rent');
+    Route::post('/cars/{id}/rent/save', "Rental\\RentalController@save")->name('rent.save');
 });
 
 Auth::routes();
@@ -34,9 +36,6 @@ Route::prefix('test')->group(function () {
         $data = Rental::find($id);
         return view('rental.one', ['rental' => $data]);
     });
-
-    /*Route::get('failed/{id}', function ($car_id) {
-        $rented = Rental::where('car_id', $car_id)->whereNull('returned_at')->first();
-        return view('rental.failed', ['user' => $rented]);
-    });*/
 });
+
+
