@@ -83,4 +83,19 @@ class CarManager implements CarManagerContract
             }
         }
     }
+
+    /**
+     * Return true if car exists.
+     *
+     * @param int $car_id
+     * @return bool
+     */
+    public function carExists(int $car_id)
+    {
+        if ($this->findById($car_id) !== null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

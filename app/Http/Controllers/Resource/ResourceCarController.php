@@ -136,7 +136,7 @@ class ResourceCarController extends Controller
         } else {
             $data = new SaveCar($request);
             $this->carsData->saveCar($data);
-            $this->sendEmailToAllUsers($this->usersData->findAll());
+            //$this->sendEmailToAllUsers($this->usersData->findAll());
             return $this->index('Car successfully added!');
         }
     }

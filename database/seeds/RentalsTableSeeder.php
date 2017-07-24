@@ -13,9 +13,9 @@ class RentalsTableSeeder extends Seeder
     public function run()
     {
         DB::table('rentals')->insert([
-            'car_id' => 1,
-            'user_id' => 1,
-            'price' => 1000,
+            'car_id' => rand(1,2),
+            'user_id' => rand(1,3),
+            'price' => rand(100,10000),
             'rented_from' => 'Kyiv, 12b',
             'rented_at' => date("Y-m-d H:i:s")
         ]);

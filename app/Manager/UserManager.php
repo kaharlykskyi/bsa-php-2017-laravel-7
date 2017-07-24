@@ -77,4 +77,19 @@ class UserManager implements UserManagerContract
             }
         }
     }
+
+    /**
+     * Return true if user exists.
+     *
+     * @param int $user_id
+     * @return bool
+     */
+    public function userExists(int $user_id)
+    {
+        if ($this->findById($user_id) !== null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

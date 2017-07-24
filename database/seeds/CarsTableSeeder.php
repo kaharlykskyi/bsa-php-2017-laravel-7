@@ -13,12 +13,12 @@ class CarsTableSeeder extends Seeder
     public function run()
     {
         DB::table('cars')->insert([
-            'color' => str_random(6),
+            'color' => 'blue',
             'model' => str_random(6),
             'registration_number' => str_random(6),
-            'year' => 2000,
-            'mileage' => 100000,
-            'price' => 1000,
+            'year' => rand(1950,2017),
+            'mileage' => rand(0,100000),
+            'price' => rand(100,1000),
             'user_id' => 1,
         ]);
     }
