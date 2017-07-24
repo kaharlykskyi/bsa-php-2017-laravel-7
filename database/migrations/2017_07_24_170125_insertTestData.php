@@ -15,8 +15,8 @@ class InsertTestData extends Migration
     public function up()
     {
         DB::table('users')->insert([
-            'first_name' => 'Fname1',
-            'last_name' => 'Lname1',
+            'first_name' => 'test',
+            'last_name' => 'test',
             'email' => 'example@example.com',
             'password' => bcrypt('secret'),
             'is_active' => 1,
@@ -24,9 +24,9 @@ class InsertTestData extends Migration
         ]);
 
         DB::table('users')->insert([
-            'first_name' => 'Fname2',
-            'last_name' => 'Lname2',
-            'email' => 'example2@example.com',
+            'first_name' => 'test',
+            'last_name' => 'test',
+            'email' => 'test@test.com',
             'password' => bcrypt('secret'),
             'is_active' => 1,
             'is_admin' => 1
