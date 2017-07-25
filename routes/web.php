@@ -23,12 +23,19 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('rent/save', "Rental\\RentalController@save")->name('rent.save');
         Route::get('return', "Rental\\ReturnController@returnCar")->name('cars.return');
     });
+    Route::prefix('/cars/api')->group( function () {
+        Route::post('rent', "Rental\\Api\\RentalController@rent")->name('api.rent');
+        Route::post('return/{id}', "Rental\\Api\\ReturnController@save")->name('api.return');
+    });
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/*Route::prefix('/cars/api')->group( function () {
+    Route::post('rent', "Rental\\Api\\RentalController@rent")->name('api.rent');
+    Route::post('return/{id}', "Rental\\Api\\ReturnController@save")->name('api.return');
+});*/
 
-
-
+Route::get('getCsrf', 'Rental\\Api\\RentalController@showToken');
