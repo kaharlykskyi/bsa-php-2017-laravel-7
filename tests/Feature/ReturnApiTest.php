@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: kaharlykskyi
+ * User: root
  * Date: 25.07.17
- * Time: 14:19
+ * Time: 16:13
  */
 
 namespace Tests\Feature;
@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use App\Manager\UserManager;
 
-class RentalApiTest extends TestCase
+class ReturnApiTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -25,7 +25,7 @@ class RentalApiTest extends TestCase
 
     public function testShouldNotSeeApiWithoutAuth()
     {
-        $response = $this->call('POST', '/cars/api/rent', ['car_id' => 1]);
+        $response = $this->call('POST', '/cars/api/return', ['car_id' => 1]);
 
         //expect redirect to /login
         $this->assertEquals(302, $response->status());
@@ -34,30 +34,30 @@ class RentalApiTest extends TestCase
     public function testShouldGetSuccessCode()
     {
         $this->createUser();
-        $this->actingAs($this->user->findById(2));
+        $this->actingAs($this->user->findById(1));
 
-        $response = $this->call('POST', '/cars/api/rent', ['car_id' => 2]);
+        $response = $this->call('POST', '/cars/api/return', ['car_id' => 1]);
 
         $this->assertEquals(200, $response->status());
     }
 
-    public function testShouldSuccessfullyRentCar()
+    public function testShouldSuccessfullyReturnCar()
     {
         $this->createUser();
 
-        $this->actingAs($this->user->findById(2))
-             ->post('/cars/api/rent', ['car_id' => 2])
-             ->assertJson([
-                'success' => 'Car rented successfully!'
+        $this->actingAs($this->user->findById(1))
+            ->post('/cars/api/return', ['car_id' => 1])
+            ->assertJson([
+                'success' => 'Car returned successfully!'
             ]);
     }
 
     public function testShouldGetErrorCode()
     {
         $this->createUser();
-        $this->actingAs($this->user->findById(1));
+        $this->actingAs($this->user->findById(2));
 
-        $response = $this->call('POST', '/cars/api/rent', ['car_id' => 2]);
+        $response = $this->call('POST', '/cars/api/return', ['car_id' => 1]);
 
         $this->assertEquals(404, $response->status());
     }
@@ -66,10 +66,11 @@ class RentalApiTest extends TestCase
     {
         $this->createUser();
 
-        $this->actingAs($this->user->findById(1))
-            ->post('/cars/api/rent', ['car_id' => 2])
+        $this->actingAs($this->user->findById(2))
+            ->post('/cars/api/return', ['car_id' => 1])
             ->assertJson([
-                'error' => 'You cant rent this car. Already rented or you have another rented car!'
+                'error' => 'You cant return this car. You dont rent this car!'
             ]);
     }
 }
+

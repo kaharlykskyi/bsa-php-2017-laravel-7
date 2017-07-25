@@ -67,7 +67,7 @@ class RentalService
      *
      * @return bool
      */
-    private function UserHaveRentedCar()
+    private function UserHaveRentedCar(): bool
     {
         $rented = Rental::where('user_id', $this->user_id)->whereNull('returned_at')->first();
         if ($rented == null) {
@@ -79,8 +79,10 @@ class RentalService
 
     /**
      * Create new rent
+     *
+     * @return bool
      */
-    private function createNewRent()
+    private function createNewRent(): bool
     {
         $rent = new Rental();
         $rent->car_id = $this->car_id;

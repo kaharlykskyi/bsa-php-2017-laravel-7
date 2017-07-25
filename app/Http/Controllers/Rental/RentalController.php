@@ -22,6 +22,12 @@ class RentalController extends Controller
         $this->carManager = $carManager;
     }
 
+    /**
+     * Return rent view to user, for example /cars/1/rent
+     *
+     * @param int $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(int $id)
     {
         $user = Auth::user();
@@ -29,6 +35,12 @@ class RentalController extends Controller
         return view('rental.show', ['user' => $user, 'car' => $car]);
     }
 
+    /**
+     * Renting car
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function save(int $id)
     {
         $user_id = Auth::user()->id;

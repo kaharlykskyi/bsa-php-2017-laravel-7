@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Rental;
 use App\Http\Controllers\Controller;
 use App\Manager\CarManager;
 use App\Services\ReturnService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class ReturnController extends Controller
@@ -22,7 +23,13 @@ class ReturnController extends Controller
         $this->carManager = $carManager;
     }
 
-    public function returnCar(int $car_id)
+    /**
+     * Return car from user interface, redirecting to /cars
+     *
+     * @param int $car_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function returnCar(int $car_id): RedirectResponse
     {
         $user_id = Auth::user()->id;
         $car = $this->carManager->findById($car_id);

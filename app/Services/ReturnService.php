@@ -24,6 +24,11 @@ class ReturnService
         $this->returned_to = $returned_to;
     }
 
+    /**
+     * Return car if car, user exists and car was rented by that auth user
+     *
+     * @return bool
+     */
     public function returnCar()
     {
         $user_id = $this->user_id;
